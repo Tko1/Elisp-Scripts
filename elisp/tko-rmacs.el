@@ -1,0 +1,10 @@
+;;tks - tk string
+(defun get-l (string letter) (let* ((first-letter (substring string 0 1))
+				    (desired-letter letter)
+				    (rest         (substring string 1)))
+			       (if (string= first-letter desired-letter)
+				   `(,letter ,rest)
+				   `("" ,string))))
+(defun rmacs-read (code)
+  (if (string= code "puts \"Cat\"")
+      (print "Cat")))

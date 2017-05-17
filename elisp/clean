@@ -1,0 +1,5 @@
+mkdir ../elispBackup
+cp * ..elispBackup
+rm *~
+rm *.elc
+rm #*#

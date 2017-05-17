@@ -1,0 +1,13 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+(defvar byond-mode-hook nil)
+(defvar byond-mode-map 
+  (let ((byond-mode-map (make-keymap)))
+    (define-key byond-mode-map "\C-j" 'newline-and-indent)
+    byond-mode-map)
+  "Keymap for byond major mode")
+
+
+(add-to-list 'auto-mode-alist '("\\.dm\\'" . byond-mode))

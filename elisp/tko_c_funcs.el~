@@ -1,0 +1,13 @@
+(require 'cl-lib)
+;;; tko_c_funcs.el --- Test
+
+
+;;; Commentary:
+;; 
+
+(defun tko-create-comment ()
+)
+
+;(provide 'tko_c_funcs)
+
+;;; tko_c_funcs.el ends here

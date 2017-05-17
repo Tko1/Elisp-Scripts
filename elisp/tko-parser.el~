@@ -1,0 +1,4 @@
+(define-parser "test-parser"
+  alpha [a-zA-Z_]
+  digit [0-9]
+  number {digit}+)

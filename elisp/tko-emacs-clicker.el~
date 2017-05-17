@@ -1,0 +1,3 @@
+(defun tkec-game (cookies)
+  `(:cookies ,cookies))
+(defun tkec-start-game (game))

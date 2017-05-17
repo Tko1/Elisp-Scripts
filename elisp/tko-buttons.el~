@@ -1,0 +1,40 @@
+(defun tko-insert-clickable-text-button (text action)
+   (insert-text-button text 'follow-link 't 'action action))
+
+;(tko-insert-clickable-text-button "This is a test" (lambda (x) (message "This i;s a test")))
+
+(setq +tko-chat-server-port+ 9999)
+(setq +tko-chat-server-host+ "127.0.0.1")
+
+(defun tko-chat-server-start () 
+  (make-network-process 
+   :name "tko-chat-server" 
+   :buffer "tko-chat-server-buffer" 
+   :host +tko-chat-server-host+
+   :service +tko-chat-server-port+
+   :family 'ipv4
+   :sentinal 'tko-server-sentinal
+   :filter 'tko-server-filter
+   :server 't)
+  (setq tko-server-clients '()))
+(defun tko-chat-client-connect ()
+  (open-network-stream
+   "tko-chat-client"
+   "tko-chat-client-buffer"
+   +tko-chat-server-host+
+   (number-to-string +tko-chat-server-port+)))
+(defun tko-chat-client-send-string (msg)
+  (process-send-string "tko-chat-client" msg))
+(defun tko-chat-client-filter (proc msg)
+  (message (concat "TCCF: " msg)))
+(defun tko-chat-server-stop ()
+  (delete-process "tko-chat-server"))
+(defun tko-server-filter (proc msg)
+  (message (concat "Msg recieved ;): " msg)))
+(defun tko-server-sentinal (proc msg)
+  (with-current-buffer "tko-chat-buffer"
+    (insert (concat "Tko: " msg "\n"))
+    (message (concat "Sentinal: " msg)))
+
+					;(defmacro btn-fn (&rest body) 
+;  `(

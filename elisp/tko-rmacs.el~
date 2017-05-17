@@ -1,0 +1,3 @@
+(defun rmacs-read (code)
+  (if (string= code "puts \"Cat\"")
+      (print "Cat")))
